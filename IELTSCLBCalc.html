@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS to CLB Calculator</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for a clean, modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Use the Inter font family */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for a subtle background pattern */
+        body {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="p-6 md:p-8">
+                <!-- Header section -->
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">IELTS to CLB Converter</h1>
+                    <p class="text-gray-500 mt-2 text-base sm:text-lg">Instantly find your Canadian Language Benchmark (CLB) equivalent scores.</p>
+                </div>
+
+                <!-- Main grid for IELTS scores and CLB results -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- IELTS Score Input Section -->
+                    <div class="space-y-6">
+                        <h2 class="text-2xl font-semibold text-gray-700 border-b pb-3">Enter Your IELTS Scores</h2>
+                        
+                        <!-- Listening Dropdown -->
+                        <div class="flex items-center justify-between">
+                            <label for="listening" class="text-lg font-medium text-gray-600">Listening</label>
+                            <select id="listening" class="ielts-score-selector w-32 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"></select>
+                        </div>
+                        
+                        <!-- Reading Dropdown -->
+                        <div class="flex items-center justify-between">
+                            <label for="reading" class="text-lg font-medium text-gray-600">Reading</label>
+                            <select id="reading" class="ielts-score-selector w-32 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"></select>
+                        </div>
+                        
+                        <!-- Writing Dropdown -->
+                        <div class="flex items-center justify-between">
+                            <label for="writing" class="text-lg font-medium text-gray-600">Writing</label>
+                            <select id="writing" class="ielts-score-selector w-32 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"></select>
+                        </div>
+
+                        <!-- Speaking Dropdown -->
+                        <div class="flex items-center justify-between">
+                            <label for="speaking" class="text-lg font-medium text-gray-600">Speaking</label>
+                            <select id="speaking" class="ielts-score-selector w-32 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"></select>
+                        </div>
+                    </div>
+
+                    <!-- CLB Results Display Section -->
+                    <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                        <h2 class="text-2xl font-semibold text-gray-700 border-b pb-3 mb-6">Your CLB Equivalent</h2>
+                        
+                        <!-- Individual CLB Scores -->
+                        <div class="space-y-4 text-lg">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-600">Listening:</span>
+                                <span id="clb-listening" class="font-bold text-indigo-600 text-xl w-12 text-center">-</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-600">Reading:</span>
+                                <span id="clb-reading" class="font-bold text-indigo-600 text-xl w-12 text-center">-</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-600">Writing:</span>
+                                <span id="clb-writing" class="font-bold text-indigo-600 text-xl w-12 text-center">-</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-600">Speaking:</span>
+                                <span id="clb-speaking" class="font-bold text-indigo-600 text-xl w-12 text-center">-</span>
+                            </div>
+                        </div>
+
+                        <!-- Divider -->
+                        <hr class="my-6 border-t border-gray-300">
+
+                        <!-- Overall Scores Section -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
+                            <div>
+                                <p class="text-lg font-medium text-gray-600 mb-2">Overall IELTS</p>
+                                <p id="ielts-overall" class="text-5xl font-bold text-gray-800">-</p>
+                                <p class="text-sm text-gray-500 mt-2">(Rounded to nearest 0.5)</p>
+                            </div>
+                            <div class="mt-4 sm:mt-0">
+                                <p class="text-lg font-medium text-gray-600 mb-2">Overall CLB Level</p>
+                                <p id="clb-overall" class="text-5xl font-bold text-indigo-600">-</p>
+                                <p class="text-sm text-gray-500 mt-2">(Lowest of 4 scores)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer for context -->
+        <footer class="text-center mt-6">
+            <p class="text-sm text-gray-500">&copy; 2024 IELTS to CLB Calculator. For informational purposes only.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Wait for the DOM to be fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // --- DATA MAPPING FOR IELTS TO CLB ---
+            // This data represents the official conversion tables for the General Training test.
+            const conversions = {
+                listening: {
+                    '9.0': 10, '8.5': 10, '8.0': 9, '7.5': 8, '7.0': 7, '6.5': 7, '6.0': 7, '5.5': 6, '5.0': 5, '4.5': 4
+                },
+                reading: { // General Training Reading
+                    '9.0': 10, '8.5': 10, '8.0': 10, '7.5': 9, '7.0': 9, '6.5': 8, '6.0': 7, '5.5': 6, '5.0': 6, '4.5': 5, '4.0': 5, '3.5': 4
+                },
+                writing: {
+                    '9.0': 10, '8.5': 10, '8.0': 10, '7.5': 10, '7.0': 9, '6.5': 8, '6.0': 7, '5.5': 6, '5.0': 5, '4.5': 4, '4.0': 4
+                },
+                speaking: {
+                    '9.0': 10, '8.5': 10, '8.0': 10, '7.5': 10, '7.0': 9, '6.5': 8, '6.0': 7, '5.5': 6, '5.0': 5, '4.5': 4, '4.0': 4
+                }
+            };
+            
+            // IELTS scores to populate the dropdowns
+            const ieltsScores = ['9.0', '8.5', '8.0', '7.5', '7.0', '6.5', '6.0', '5.5', '5.0', '4.5', '4.0', '3.5', '3.0', '2.5', '2.0', '1.5', '1.0', '0.5', '0.0'];
+
+            // --- POPULATE DROPDOWNS ---
+            const selectors = document.querySelectorAll('.ielts-score-selector');
+            selectors.forEach(selector => {
+                // Add a default, unselected option
+                const defaultOption = document.createElement('option');
+                defaultOption.value = "";
+                defaultOption.textContent = "Select";
+                defaultOption.selected = true;
+                defaultOption.disabled = true;
+                selector.appendChild(defaultOption);
+                
+                // Add all possible IELTS scores
+                ieltsScores.forEach(score => {
+                    const option = document.createElement('option');
+                    option.value = score;
+                    option.textContent = score;
+                    selector.appendChild(option);
+                });
+
+                // Add event listener to each dropdown to trigger calculation on change
+                selector.addEventListener('change', updateCLBScores);
+            });
+
+            // --- CALCULATION AND DISPLAY LOGIC ---
+            function updateCLBScores() {
+                // Get selected values from each dropdown
+                const listeningScore = document.getElementById('listening').value;
+                const readingScore = document.getElementById('reading').value;
+                const writingScore = document.getElementById('writing').value;
+                const speakingScore = document.getElementById('speaking').value;
+                
+                // Calculate individual CLB scores using the conversion map
+                // If a score is not in the map (e.g., too low), it defaults to 0
+                const clbListening = conversions.listening[listeningScore] || 0;
+                const clbReading = conversions.reading[readingScore] || 0;
+                const clbWriting = conversions.writing[writingScore] || 0;
+                const clbSpeaking = conversions.speaking[speakingScore] || 0;
+
+                // Display individual CLB scores
+                document.getElementById('clb-listening').textContent = listeningScore ? clbListening : '-';
+                document.getElementById('clb-reading').textContent = readingScore ? clbReading : '-';
+                document.getElementById('clb-writing').textContent = writingScore ? clbWriting : '-';
+                document.getElementById('clb-speaking').textContent = speakingScore ? clbSpeaking : '-';
+                
+                // --- CALCULATE OVERALL SCORES ---
+                const allScoresSelected = listeningScore && readingScore && writingScore && speakingScore;
+                
+                if (allScoresSelected) {
+                    // Calculate Overall IELTS Score
+                    const l = parseFloat(listeningScore);
+                    const r = parseFloat(readingScore);
+                    const w = parseFloat(writingScore);
+                    const s = parseFloat(speakingScore);
+                    const average = (l + r + w + s) / 4;
+                    // Round to the nearest 0.5, as per official IELTS rules
+                    const overallIELTS = (Math.round(average * 2) / 2).toFixed(1);
+                    document.getElementById('ielts-overall').textContent = overallIELTS;
+
+                    // The overall CLB level is the minimum of the four individual scores
+                    const overallCLB = Math.min(clbListening, clbReading, clbWriting, clbSpeaking);
+                    document.getElementById('clb-overall').textContent = overallCLB;
+                } else {
+                    // If not all scores are selected, display placeholders
+                    document.getElementById('ielts-overall').textContent = '-';
+                    document.getElementById('clb-overall').textContent = '-';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
